@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+  }
+  
+  body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212121; 
+    background-image: url('img/cinzaverde.avif'); 
+    background-size: cover;
+    background-position: center;
+    color: #fff; 
+  }
+  
+  header {
+    padding: 15px 100px 8px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+  }
+  
+  main {
+    max-width: 550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bxs-chevron-up-circle {
+    color: #76b041;
+  }
+  
+  .bxs-chevron-down-circle {
+    color: #d32f2f; 
+  }
+  
+  .resumo {
+    display: flex;
+    padding: 10px 0;
+    gap: 40px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .resumo > div {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    background-color: #2e2e2e; 
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+  }
+  
+  .novo-item {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .divDesc, .divTipo, .divValor {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .novoItem > button {
+    background-color: #388e3c; 
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 34px;
+  }
+  
+  input, select {
+    padding: 5px;
+    border-radius: 7px;
+    border: 1px solid #76b041; 
+    background-color: #333; 
+    color: white;
+  }
+  
+  .tabela-itens {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  table {
+    width: 98%;
+    padding: 20px 0;
+    border-radius: 5px;
+    background-color: #2c2c2c; 
+  }
+  
+  th {
+    text-align: start;
+    border-bottom: inset;
+    padding-bottom: 5px;
+    color: #76b041; 
+  }
+  
+  i {
+    font-size: 25px;
+  }
+  
+  .columnAcao {
+    width: 40px;
+    text-align: center;
+  }
+  
+  .columnAcao > button {
+    background: transparent;
+    border: none;
+  }
+  
+  .columnValor {
+    width: 30%;
+  }
+  
+  .columnTipo {
+    width: 80px;
+    text-align: center;
+  }
+  
