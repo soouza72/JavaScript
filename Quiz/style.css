@@ -1,0 +1,139 @@
+/* Importando a fonte Questrial do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+/* Resetando as configurações padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Questrial', sans-serif;
+}
+
+/* Estilizando o corpo da página */
+body {
+    background: linear-gradient(to right, #2c3e50, #3498db); /* Gradiente de fundo */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container principal do quiz */
+.container {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semitransparente */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+}
+
+/* Estilo do título */
+h1 {
+    text-align: center;
+    color: #ecf0f1; /* Cor clara para o título */
+    margin-bottom: 2rem;
+}
+
+/* Estilo do placar */
+#placar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Placar com fundo semitransparente */
+    border-radius: 8px;
+    font-size: 1.2rem;
+}
+
+/* Estilo dos números do placar */
+#placar span {
+    font-weight: bold;
+}
+
+/* Cor do número de acertos */
+#acertos {
+    color: #2ecc71; /* Verde para acertos */
+}
+
+/* Cor do número de erros */
+#erros {
+    color: #e74c3c; /* Vermelho para erros */
+}
+
+/* Estilo da pergunta */
+#pergunta {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #ecf0f1; /* Texto claro */
+    text-align: center;
+}
+
+/* Estilo das opções de resposta */
+.opcao {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #34495e; /* Fundo escuro das opções */
+    border: 2px solid #7f8c8d;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;   
+    transition: all 0.3s;
+}
+
+/* Efeito quando passar o mouse sobre a opção */
+.opcao:hover {
+    background-color: #5d6d7e; /* Cor mais clara no hover */
+}
+
+/* Estilo da opção selecionada */
+.opcao.selecionada {
+    background-color: #9b59b6; /* Cor roxa para a opção selecionada */
+    color: white;
+    border-color: #8e44ad; /* Cor de borda mais escura */
+}
+
+/* Estilo dos botões */
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 1rem;
+    background-color: #1abc9c; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+    background-color: #16a085; /* Cor mais escura ao passar o mouse */
+}
+
+/* Classe para esconder elementos */
+.esconder {
+    display: none;
+}
+
+/* Estilo da tela de pontuação final */
+#pontuacao {
+    text-align: center;
+}
+
+/* Estilo do título da pontuação final */
+#pontuacao h2 {
+    color: #ecf0f1; /* Título claro */
+    margin-bottom: 1rem;
+}
+
+/* Estilo do texto da pontuação final */
+#pontuacao p {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ecf0f1; /* Texto claro */
+}
