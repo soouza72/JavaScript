@@ -1,7 +1,5 @@
-/* Importando a fonte Questrial do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-/* Resetando as configurações padrão do navegador */
 * {
     margin: 0;
     padding: 0;
@@ -9,131 +7,115 @@
     font-family: 'Questrial', sans-serif;
 }
 
-/* Estilizando o corpo da página */
 body {
-    background: linear-gradient(to right, #2c3e50, #3498db); /* Gradiente de fundo */
+    background: url('codigo.avif') no-repeat center center fixed;
+    background-size: cover;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Container principal do quiz */
 .container {
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo semitransparente */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     max-width: 600px;
     width: 90%;
 }
 
-/* Estilo do título */
 h1 {
     text-align: center;
-    color: #ecf0f1; /* Cor clara para o título */
+    color: #333;
     margin-bottom: 2rem;
 }
 
-/* Estilo do placar */
 #placar {
     display: flex;
     justify-content: space-around;
     margin-bottom: 2rem;
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.2); /* Placar com fundo semitransparente */
-    border-radius: 8px;
-    font-size: 1.2rem;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 1.1rem;
 }
 
-/* Estilo dos números do placar */
 #placar span {
     font-weight: bold;
 }
 
-/* Cor do número de acertos */
 #acertos {
-    color: #2ecc71; /* Verde para acertos */
+    color: #4caf50;
 }
 
-/* Cor do número de erros */
 #erros {
-    color: #e74c3c; /* Vermelho para erros */
+    color: #f44336;
 }
 
-/* Estilo da pergunta */
 #pergunta {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-bottom: 1.5rem;
-    color: #ecf0f1; /* Texto claro */
+    color: #444;
     text-align: center;
 }
 
-/* Estilo das opções de resposta */
 .opcao {
     display: block;
     width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #34495e; /* Fundo escuro das opções */
-    border: 2px solid #7f8c8d;
-    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: #f8f8f8;
+    border: 2px solid #ccc;
+    border-radius: 6px;
     cursor: pointer;
-    color: white;   
-    transition: all 0.3s;
+    transition: 0.3s;
+    color: #333;
 }
 
-/* Efeito quando passar o mouse sobre a opção */
 .opcao:hover {
-    background-color: #5d6d7e; /* Cor mais clara no hover */
+    background-color: #e0e0e0;
 }
 
-/* Estilo da opção selecionada */
 .opcao.selecionada {
-    background-color: #9b59b6; /* Cor roxa para a opção selecionada */
+    background-color: #4caf50;
     color: white;
-    border-color: #8e44ad; /* Cor de borda mais escura */
+    border-color: #4caf50;
 }
 
-/* Estilo dos botões */
 button {
     display: block;
     width: 100%;
     padding: 12px;
     margin-top: 1rem;
-    background-color: #1abc9c; /* Cor do botão */
+    background-color: #333;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: background-color 0.3s;
 }
 
-/* Efeito de hover no botão */
 button:hover {
-    background-color: #16a085; /* Cor mais escura ao passar o mouse */
+    background-color: #555;
 }
 
-/* Classe para esconder elementos */
 .esconder {
     display: none;
 }
 
-/* Estilo da tela de pontuação final */
 #pontuacao {
     text-align: center;
 }
 
-/* Estilo do título da pontuação final */
 #pontuacao h2 {
-    color: #ecf0f1; /* Título claro */
+    color: #333;
     margin-bottom: 1rem;
 }
 
-/* Estilo do texto da pontuação final */
 #pontuacao p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: #ecf0f1; /* Texto claro */
+    color: #444;
 }
