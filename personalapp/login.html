@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - App do Personal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Login</h1>
+  <p>Entre com seu usuário e senha</p>
+</header>
+
+<nav>
+  <a href="index.html">Início</a>
+  <a href="treinos.html">Treinos</a>
+  <a href="acompanhamento.html">Acompanhamento</a>
+  <a href="depoimentos.html">Depoimentos</a>
+  <a href="contato.html">Contato</a>
+  <a href="login.html">Login</a>
+</nav>
+
+<section>
+  <form id="loginForm" onsubmit="return handleLogin(event)">
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" required />
+    <label for="password">Senha:</label>
+    <input type="password" id="password" required />
+    <button type="submit">Entrar</button>
+  </form>
+  <p id="loginMessage" style="color: red;"></p>
+</section>
+
+<footer>
+  <p>&copy; 2025 App do Personal</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

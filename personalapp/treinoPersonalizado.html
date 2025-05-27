@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Treino Personalizado</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #listaTreinos {
+      margin-top: 30px;
+    }
+    .card {
+      background: #f0f0f0;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .card h4 {
+      margin: 0 0 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Treino Personalizado para Aluno</h1>
+</header>
+
+<nav>
+  <a href="index.html">Início</a>
+  <a href="treinoPersonalizado.html">Treino Personalizado</a>
+  <a href="login.html">Login</a>
+</nav>
+
+<section>
+  <form id="formAluno">
+    <label for="nome">Nome do aluno:</label><br/>
+    <input type="text" id="nome" required /><br/><br/>
+
+    <label for="objetivo">Objetivo:</label><br/>
+    <select id="objetivo" required>
+      <option value="">Selecione</option>
+      <option value="hipertrofia">Hipertrofia</option>
+      <option value="emagrecimento">Emagrecimento</option>
+      <option value="condicionamento">Condicionamento físico</option>
+    </select><br/><br/>
+
+    <label for="nivel">Nível:</label><br/>
+    <select id="nivel" required>
+      <option value="">Selecione</option>
+      <option value="iniciante">Iniciante</option>
+      <option value="intermediario">Intermediário</option>
+      <option value="avancado">Avançado</option>
+    </select><br/><br/>
+
+    <button type="submit">Gerar e Salvar Treino</button>
+  </form>
+
+  <div id="resultado" style="margin-top:20px;"></div>
+
+  <h2>Treinos Salvos</h2>
+  <div id="listaTreinos"></div>
+</section>
+
+<script>
+  const form = document.getElementById('formAluno');
+  const resultado = document.getElementById('resultado');
+  const listaTreinos = document.getElementById('listaTreinos');
+
+  function gerarTreino(nome, objetivo, nivel) {
+    if (objetivo === 'hipertrofia') {
+      if (nivel === 'iniciante') {
+        return `
+          <ul>
+            <li>Supino reto 3x10</li>
+            <li>Agachamento 3x10</li>
+            <li>Remada baixa 3x10</li>
+            <li>Rosca direta 3x10</li>
+          </ul>
+        `;
+      } else if (nivel === 'intermediario') {
+        return `
+          <ul>
+            <li>Supino reto 4x10</li>
+            <li>Agachamento livre 4x8</li>
+            <li>Remada curvada 4x10</li>
+            <li>Rosca direta 4x10</li>
+            <li>Tríceps pulley 4x12</li>
+          </ul>
+        `;
+      } else {
+        return `
+          <ul>
+            <li>Supino inclinado 4x8</li>
+            <li>Agachamento frontal 4x8</li>
+            <li>Levantamento terra 4x6</li>
+            <li>Rosca concentrada 4x12</li>
+            <li>Tríceps testa 4x12</li>
+            <li>Elevação lateral 4x15</li>
+          </ul>
+        `;
+      }
+    } else if (objetivo === 'emagrecimento') {
+      return `
+        <ul>
+          <li>Treino funcional 3x20 minutos</li>
+          <li>Corrida intervalada 3x20 minutos</li>
+          <li>Abdominais 3x15</li>
+        </ul>
+      `;
+    } else {
+      return `
+        <ul>
+          <li>Corrida leve 30 min</li>
+          <li>Flexões 3x15</li>
+          <li>Agachamento com peso corporal 3x20</li>
+          <li>Prancha 3x 1 min</li>
+        </ul>
+      `;
+    }
+  }
+
+  function salvarTreino(treinoObj) {
+    let treinos = JSON.parse(localStorage.getItem('treinosPersonalizados')) || [];
+    treinos.push(treinoObj);
+    localStorage.setItem('treinosPersonalizados', JSON.stringify(treinos));
+  }
+
+  function carregarTreinos() {
+    listaTreinos.innerHTML = '';
+    let treinos = JSON.parse(localStorage.getItem('treinosPersonalizados')) || [];
+    if (treinos.length === 0) {
+      listaTreinos.innerHTML = '<p>Nenhum treino salvo ainda.</p>';
+      return;
+    }
+    treinos.forEach((t, i) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <h4>${t.nome} - ${t.objetivo} (${t.nivel})</h4>
+        ${t.treinoHTML}
+      `;
+      listaTreinos.appendChild(card);
+    });
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value.trim();
+    const objetivo = document.getElementById('objetivo').value;
+    const nivel = document.getElementById('nivel').value;
+
+    const treinoHTML = gerarTreino(nome, objetivo, nivel);
+
+    resultado.innerHTML = `<h3>Treino para ${nome} - ${objetivo} (${nivel})</h3>` + treinoHTML;
+
+    salvarTreino({
+      nome,
+      objetivo,
+      nivel,
+      treinoHTML
+    });
+
+    carregarTreinos();
+
+    form.reset();
+  });
+
+  // Carrega treinos já salvos ao abrir a página
+  carregarTreinos();
+</script>
+
+<footer>
+  <p>&copy; 2025 App do Personal</p>
+</footer>
+
+</body>
+</html>

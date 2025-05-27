@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contagem Regressiva - Fim do Semestre</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+    body {
+      font-family: 'Roboto Slab', serif;
+      /* Fundo com imagem + overlay linear escuro para contraste */
+      background:
+        linear-gradient(rgba(0, 77, 64, 0.75), rgba(0, 77, 64, 0.75)),
+        url('https://i.pinimg.com/736x/0f/63/bf/0f63bf38bc6f70962c04aadf7875c884.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f4f8;
+      text-align: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+    }
+
+    #contador {
+      font-size: 3em;
+      font-weight: 700;
+      margin: 25px auto;
+      background: rgba(255, 255, 255, 0.15);
+      display: inline-block;
+      padding: 20px 45px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+      letter-spacing: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .barra-container {
+      width: 80%;
+      max-width: 600px;
+      height: 30px;
+      background-color: rgba(255, 255, 255, 0.3);
+      margin: 40px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px #004d40;
+    }
+
+    .barra-progresso {
+      height: 100%;
+      background: linear-gradient(90deg, #ffb347, #ffcc33);
+      width: 0%;
+      transition: width 1s linear;
+      border-radius: 20px 0 0 20px;
+      box-shadow: 0 0 12px 2px #ffd54f;
+    }
+
+    #mensagemFinal {
+      font-size: 2.4em;
+      color: #ffd54f;
+      margin-top: 35px;
+      font-weight: 700;
+      text-shadow: 1px 1px 5px #a37a00;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contagem Regressiva para o Fim do Semestre<br><small>(25 de Junho de 2025)</small></h1>
+
+  <div id="contador">00d 00h 00m 00s</div>
+
+  <div class="barra-container">
+    <div class="barra-progresso" id="barraProgresso"></div>
+  </div>
+
+  <div id="mensagemFinal"></div>
+
+  <audio id="somFinal" src="https://www.soundjay.com/human/applause-8.mp3" preload="auto"></audio>
+
+  <script>
+    const dataFinal = new Date(2025, 5, 25, 0, 0, 0); // Junho = 5
+    const dataInicial = new Date(); // início da contagem
+    const totalMs = dataFinal - dataInicial;
+
+    function pad(valor) {
+      return valor < 10 ? "0" + valor : valor;
+    }
+
+    function atualizarContador() {
+      const agora = new Date();
+      const restante = dataFinal - agora;
+
+      if (restante <= 0) {
+        clearInterval(intervalo);
+        document.getElementById("contador").textContent = "00d 00h 00m 00s";
+        document.getElementById("mensagemFinal").textContent = "Parabéns! Boas férias!";
+        document.getElementById("mensagemFinal").style.display = "block";
+        document.getElementById("somFinal").play();
+        document.getElementById("barraProgresso").style.width = "100%";
+        return;
+      }
+
+      const dias = Math.floor(restante / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((restante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((restante % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((restante % (1000 * 60)) / 1000);
+
+      document.getElementById("contador").textContent =
+        pad(dias) + "d " + pad(horas) + "h " + pad(minutos) + "m " + pad(segundos) + "s";
+
+      const progresso = 100 - (restante / totalMs) * 100;
+      document.getElementById("barraProgresso").style.width = progresso + "%";
+    }
+
+    atualizarContador();
+    const intervalo = setInterval(atualizarContador, 1000);
+  </script>
+
+</body>
+</html>
