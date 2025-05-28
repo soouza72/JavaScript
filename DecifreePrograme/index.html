@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utilitários Interativos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 40px;
+    }
+    section {
+      background: #ffffff11;
+      padding: 20px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+    }
+    .fraca { color: red; }
+    .media { color: orange; }
+    .forte { color: limegreen; }
+  </style>
+</head>
+<body>
+  <h1>Utilitários Interativos</h1>
+
+  <!-- Verificador de Senha -->
+  <section>
+    <h2>Verificador de Senha</h2>
+    <input type="password" id="senha" placeholder="Digite sua senha" />
+    <button onclick="verificarSenha()">Verificar</button>
+    <p id="forca"></p>
+  </section>
+
+  <!-- Gerador de Frases Motivacionais -->
+  <section>
+    <h2>Frase Motivacional</h2>
+    <button onclick="mostrarFrase()">Nova Frase</button>
+    <p id="frase"></p>
+  </section>
+
+  <!-- Conversor de Temperatura -->
+  <section>
+    <h2>Conversor de Temperatura</h2>
+    <input type="number" id="temp" placeholder="Digite a temperatura" />
+    <select id="tipo">
+      <option value="CtoF">Celsius → Fahrenheit</option>
+      <option value="FtoC">Fahrenheit → Celsius</option>
+    </select>
+    <button onclick="converterTemp()">Converter</button>
+    <p id="resultadoTemp"></p>
+  </section>
+
+  <!-- Calculadora Simples -->
+  <section>
+    <h2>Calculadora</h2>
+    <input type="text" id="tela" readonly />
+    <div>
+      <button onclick="calc('1')">1</button>
+      <button onclick="calc('2')">2</button>
+      <button onclick="calc('3')">3</button>
+      <button onclick="calc('+')">+</button><br />
+      <button onclick="calc('4')">4</button>
+      <button onclick="calc('5')">5</button>
+      <button onclick="calc('6')">6</button>
+      <button onclick="calc('-')">-</button><br />
+      <button onclick="calc('7')">7</button>
+      <button onclick="calc('8')">8</button>
+      <button onclick="calc('9')">9</button>
+      <button onclick="calc('*')">*</button><br />
+      <button onclick="calc('0')">0</button>
+      <button onclick="calc('.')">.</button>
+      <button onclick="calc('/')">/</button>
+      <button onclick="calcular()">=</button><br />
+      <button onclick="limpar()">Limpar</button>
+    </div>
+  </section>
+
+  <script>
+    function verificarSenha() {
+      const senha = document.getElementById('senha').value;
+      const forca = document.getElementById('forca');
+      let nivel = 0;
+      if (senha.length >= 8) nivel++;
+      if (/[A-Z]/.test(senha) && /[a-z]/.test(senha)) nivel++;
+      if (/\d/.test(senha)) nivel++;
+      if (!isNaN(senha)) nivel = 0;
+      const resultados = ['Senha fraca', 'Senha média', 'Senha forte'];
+      const classes = ['fraca', 'media', 'forte'];
+      forca.className = classes[nivel - 1] || 'fraca';
+      forca.textContent = resultados[nivel - 1] || 'Senha fraca';
+    }
+
+    const frases = [
+      'Você é mais forte do que pensa!',
+      'Nunca desista dos seus sonhos.',
+      'Acredite no processo.',
+      'Coragem é agir apesar do medo.',
+      'O sucesso é a soma de pequenos esforços.'
+    ];
+    function mostrarFrase() {
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById('frase').textContent = frase;
+    }
+
+    function converterTemp() {
+      const valor = parseFloat(document.getElementById('temp').value);
+      const tipo = document.getElementById('tipo').value;
+      const out = document.getElementById('resultadoTemp');
+      if (isNaN(valor)) {
+        out.textContent = 'Digite um número válido';
+        return;
+      }
+      let resultado;
+      if (tipo === 'CtoF') resultado = (valor * 9/5) + 32 + ' °F';
+      else resultado = ((valor - 32) * 5/9).toFixed(2) + ' °C';
+      out.textContent = resultado;
+    }
+
+    function calc(char) {
+      document.getElementById('tela').value += char;
+    }
+    function calcular() {
+      try {
+        document.getElementById('tela').value = eval(document.getElementById('tela').value);
+      } catch {
+        document.getElementById('tela').value = 'Erro';
+      }
+    }
+    function limpar() {
+      document.getElementById('tela').value = '';
+    }
+  </script>
+</body>
+</html>
