@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartões Interativos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      width: 200px;
+      height: 260px;
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      cursor: pointer;
+    }
+
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Temas */
+    .birthday .card-front { background: #ff69b4; }
+    .birthday .card-back { background: #ff1493; }
+
+    .christmas .card-front { background: #008000; }
+    .christmas .card-back { background: #006400; }
+
+    .mothers .card-front { background: #f08080; }
+    .mothers .card-back { background: #cd5c5c; }
+
+    .valentines .card-front { background: #ff4d6d; }
+    .valentines .card-back { background: #d6336c; }
+
+    .newyear .card-front { background: #1e90ff; }
+    .newyear .card-back { background: #104e8b; }
+
+    .easter .card-front { background: #dda0dd; }
+    .easter .card-back { background: #ba55d3; }
+
+    .teacher .card-front { background: #4169e1; }
+    .teacher .card-back { background: #27408b; }
+
+    .apology .card-front { background: #808080; }
+    .apology .card-back { background: #696969; }
+
+    .motivational .card-front { background: #ff8c00; }
+    .motivational .card-back { background: #ff7f50; }
+
+    .junina .card-front { background: #ffdb58; }
+    .junina .card-back { background: #f4c430; }
+  </style>
+</head>
+<body>
+  <div class="card birthday">
+    <div class="card-inner">
+      <div class="card-front">🎉 Parabéns!</div>
+      <div class="card-back">Aproveita seu dia, come bolo e curte muito! 🎂🎁</div>
+    </div>
+  </div>
+
+  <div class="card christmas">
+    <div class="card-inner">
+      <div class="card-front">🎄 Feliz Natal!</div>
+      <div class="card-back">Muita comida boa, risada e abraços! 🎅✨</div>
+    </div>
+  </div>
+
+  <div class="card mothers">
+    <div class="card-inner">
+      <div class="card-front">💐 Te amo, mãe!</div>
+      <div class="card-back">Obrigado por tudo! Você é incrível! ❤️</div>
+    </div>
+  </div>
+
+  <div class="card valentines">
+    <div class="card-inner">
+      <div class="card-front">💕 Te amo demais</div>
+      <div class="card-back">Com você tudo fica mais leve e feliz 💖</div>
+    </div>
+  </div>
+
+  <div class="card newyear">
+    <div class="card-inner">
+      <div class="card-front">🎆 Bora 2025!</div>
+      <div class="card-back">Novos planos, novas metas e muita vibe boa! 🎉</div>
+    </div>
+  </div>
+
+  <div class="card easter">
+    <div class="card-inner">
+      <div class="card-front">🐣 Páscoa chegou!</div>
+      <div class="card-back">Muito chocolate e carinho pra todo mundo! 🍫🌸</div>
+    </div>
+  </div>
+
+  <div class="card teacher">
+    <div class="card-inner">
+      <div class="card-front">📚 Valeu, prof!</div>
+      <div class="card-back">Você manda bem demais! Obrigado por tudo 👩‍🏫👨‍🏫</div>
+    </div>
+  </div>
+
+  <div class="card apology">
+    <div class="card-inner">
+      <div class="card-front">😔 Foi mal...</div>
+      <div class="card-back">Errei feio. Bora conversar e resolver? 🙏</div>
+    </div>
+  </div>
+
+  <div class="card motivational">
+    <div class="card-inner">
+      <div class="card-front">🚀 Vai com tudo!</div>
+      <div class="card-back">Você é capaz, só vai! 💪🔥</div>
+    </div>
+  </div>
+
+  <div class="card junina">
+    <div class="card-inner">
+      <div class="card-front">🎊 Arraiá!</div>
+      <div class="card-back">Bora dançar, comer canjica e curtir a festa! 🌽🕺</div>
+    </div>
+  </div>
+</body>
+</html>
