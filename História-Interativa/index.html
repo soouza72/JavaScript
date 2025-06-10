@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>🗺️ A Busca pelo Tesouro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.imgur.com/nfFJAhZ.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Georgia', serif;
+      color: #3e2e00;
+      text-shadow: 1px 1px 1px #fff;
+      padding: 20px;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #7b3f00;
+    }
+    #story {
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+    .choices button {
+      display: block;
+      margin: 10px 0;
+      padding: 15px;
+      width: 100%;
+      background: linear-gradient(to right, #e8c07d, #d6a45d);
+      border: 2px solid #7b3f00;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #3e2e00;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .choices button:hover {
+      background: linear-gradient(to right, #f4d58d, #e2b970);
+      transform: scale(1.02);
+    }
+    .end {
+      font-weight: bold;
+      font-size: 1.4em;
+      margin-top: 20px;
+      text-align: center;
+      color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏝️ A Busca pelo Tesouro Escondido</h1>
+    <div id="story">Você encontra um velho mapa dentro de uma garrafa na praia... ele parece levar a um tesouro escondido! ⚓</div>
+    <div class="choices" id="choices">
+      <button onclick="choose('floresta')">🌲 Seguir pela floresta</button>
+      <button onclick="choose('caverna')">🕳️ Ir pelo atalho da caverna</button>
+    </div>
+  </div>
+
+  <script>
+    function choose(path) {
+      const story = document.getElementById("story");
+      const choices = document.getElementById("choices");
+
+      switch(path) {
+        case 'floresta':
+          story.innerHTML = "Você entra na floresta densa, onde tudo parece sussurrar mistério...";
+          choices.innerHTML = `
+            <button onclick="choose('arvore')">🌳 Subir numa árvore alta para se orientar</button>
+            <button onclick="choose('agua')">💧 Seguir um som misterioso de água corrente</button>
+          `;
+          break;
+
+        case 'caverna':
+          story.innerHTML = "Você adentra a caverna úmida e escura... algo se move no fundo.";
+          choices.innerHTML = `
+            <button onclick="choose('tocha')">🔥 Acender uma tocha para iluminar</button>
+            <button onclick="choose('escuro')">👣 Andar no escuro para não chamar atenção</button>
+          `;
+          break;
+
+        case 'arvore':
+          story.innerHTML = "Do topo da árvore, você avista uma cabana antiga escondida entre as folhas...";
+          choices.innerHTML = `
+            <button onclick="choose('cabana')">🏚️ Explorar a cabana</button>
+            <button onclick="choose('ignorarCabana')">🗺️ Ignorar e continuar seguindo o mapa</button>
+          `;
+          break;
+
+        case 'agua':
+          story.innerHTML = "Você pisa em falso... areia movediça começa a te engolir!";
+          choices.innerHTML = `<div class="end">❌ Final trágico: Fim da aventura... a floresta guardou seu segredo. 🕳️</div>`;
+          break;
+
+        case 'cabana':
+          story.innerHTML = "Na cabana, você encontra um diário empoeirado com pistas sobre o tesouro.";
+          choices.innerHTML = `
+            <button onclick="choose('usarDiario')">📖 Usar o diário</button>
+            <button onclick="choose('ignorarDiario')">🚶‍♂️ Ignorar e seguir sozinho</button>
+          `;
+          break;
+
+        case 'ignorarCabana':
+          story.innerHTML = "Você ignora a cabana, mas se perde e é cercado por animais selvagens.";
+          choices.innerHTML = `<div class="end">❌ Final trágico: A selva foi mais forte que sua ambição. 🐅</div>`;
+          break;
+
+        case 'usarDiario':
+          story.innerHTML = "As anotações revelam uma passagem secreta escondida nas raízes de uma árvore.";
+          choices.innerHTML = `<div class="end">✅ Final feliz: Você encontra o baú do tesouro enterrado! 🎉💰</div>`;
+          break;
+
+        case 'ignorarDiario':
+          story.innerHTML = "Sem as dicas, você ativa uma armadilha antiga e fica preso entre pedras.";
+          choices.innerHTML = `<div class="end">❌ Final ruim: Você falhou por pouco. 😢</div>`;
+          break;
+
+        case 'tocha':
+          story.innerHTML = "A tocha afugenta morcegos, mas revela uma porta de pedra oculta na parede.";
+          choices.innerHTML = `
+            <button onclick="choose('abrirPorta')">🚪 Abrir a porta secreta</button>
+            <button onclick="choose('continuarReto')">➡️ Ignorar e seguir em frente</button>
+          `;
+          break;
+
+        case 'escuro':
+          story.innerHTML = "Você tropeça no escuro e bate a cabeça numa rocha afiada.";
+          choices.innerHTML = `<div class="end">❌ Final ruim: Desmaiado, você nunca encontra o tesouro. 💫</div>`;
+          break;
+
+        case 'abrirPorta':
+          story.innerHTML = "A porta leva a uma sala com enigmas brilhando nas paredes.";
+          choices.innerHTML = `
+            <button onclick="choose('resolver')">🧠 Tentar resolver os enigmas</button>
+            <button onclick="choose('forcar')">💪 Tentar abrir à força</button>
+          `;
+          break;
+
+        case 'continuarReto':
+          story.innerHTML = "Você pisa num buraco escondido e cai sem fim...";
+          choices.innerHTML = `<div class="end">❌ Final trágico: A caverna selou seu destino. 🕳️</div>`;
+          break;
+
+        case 'resolver':
+          story.innerHTML = "Você decifra os símbolos e uma passagem se abre revelando o tesouro!";
+          choices.innerHTML = `<div class="end">✅ Final feliz: Você encontrou o tesouro perdido das ilhas! 🎉💎</div>`;
+          break;
+
+        case 'forcar':
+          story.innerHTML = "Você força a parede... um som de engrenagens é seguido por estacas afiadas.";
+          choices.innerHTML = `<div class="end">❌ Final ruim: As armadilhas foram fatais. ☠️</div>`;
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
