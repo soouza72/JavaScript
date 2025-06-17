@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jukebox de Treino Pesado!</title>
+  <style>
+    * {box-sizing: border-box; margin: 0; padding: 0;}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #eee;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .background-overlay {
+      position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity .6s ease;
+      z-index: -1;
+      filter: brightness(.7);
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0,0,0,.6);
+      padding: 40px 50px;
+      border-radius: 24px;
+      box-shadow: 0 0 30px rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+      transition: transform .4s ease;
+    }
+
+    h1 {
+      font-size: 38px;
+      color: #ff1744;
+      margin-bottom: 25px;
+    }
+
+    p {font-size: 18px; margin-bottom: 30px;}
+
+    button {
+      padding: 14px 26px;
+      margin: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #ff5252;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 2px 2px 6px rgba(0,0,0,.25);
+      transition: background .3s;
+    }
+    button:hover {background: #ff1744;}
+
+    #imagem {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    #foto {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 8px solid #ff1744;
+      box-shadow: 0 0 25px rgba(0,0,0,.4);
+    }
+
+    #musicaAtual {font-weight: bold; font-size: 22px; color: #ff5252;}
+
+    #audio {width: 260px;}
+
+    #voltarBtn {background: #424242;}
+    #voltarBtn:hover {background:#616161;}
+
+    @keyframes girar {from{transform:rotate(0)}to{transform:rotate(360deg);}}
+    .girando {animation: girar 6s linear infinite;}
+  </style>
+</head>
+<body>
+  <div class="background-overlay" id="bgOverlay"></div>
+
+  <div class="container" id="menuInicial">
+    <h1>🔥 Jukebox Oldschool 💪🏻</h1>
+    <p>E aí Parceiro, vai treinar o que hoje? Como está se sentindo?</p>
+
+    <div>
+      <button onclick="tocar('peito')">Alegria-Peito</button>
+      <button onclick="tocar('costas')">Aventura-Costas</button>
+      <button onclick="tocar('pernas')">Tristeza-Pernas</button>
+      <button onclick="tocar('ombros')">Romântica-Ombros</button>
+      <button onclick="tocar('biceps')">Calma-Bíceps</button>
+      <button onclick="tocar('triceps')">Suspense-Tríceps</button>
+      <button onclick="tocar('abdomen')">Terror-Abdômen</button>
+      <button onclick="tocar('cardio')">Energia-Cardio</button>
+    </div>
+  </div>
+
+  <div id="imagem">
+    <img src="" alt="Imagem do treino" id="foto">
+    <div id="musicaAtual"></div>
+    <audio src="" id="audio" controls></audio>
+    <button id="voltarBtn" onclick="voltar()">🔙 Voltar</button>
+  </div>
+
+<script>
+  function tocar(grupo) {
+    const audio = document.getElementById('audio');
+    const foto = document.getElementById('foto');
+    const musicaAtual = document.getElementById('musicaAtual');
+    const bg = document.getElementById('bgOverlay');
+    const menu = document.getElementById('menuInicial');
+    const imagemDiv = document.getElementById('imagem');
+
+    let musica='', imagem='', fundo='', nome='';
+
+    switch(grupo) {
+      case 'peito':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjypcWH_7-PtWwFbRKYJDMqB-o_J7KF4bG2w&s';
+        fundo  = 'https://images.unsplash.com/photo-1594737625785-cbb426d60eaf?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Pump de Peito';
+        break;
+      case 'costas':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3';
+        imagem = 'https://musculacaoonline.com.br/wp-content/uploads/2018/02/treino-de-costas_10-melhores-exerc%C3%ADcios-e1517778731626.jpg';
+        fundo  = 'https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Pump na Dorsal';
+        break;
+      case 'pernas':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNZ9eAvQHLTIi9BGnear_BwWFtXLqvrFCrKA&s';
+        fundo  = 'https://images.unsplash.com/photo-1600181953914-30d86940fc6d?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Boa Sorte! você vai precisar';
+        break;
+      case 'ombros':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj0ARv3qYjdOCOXYRJsbeQdtaqqHMXyzR52w&s';
+        fundo  = 'https://images.unsplash.com/photo-1621592486577-7a76ccbc9339?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Shoulder Press';
+        break;
+      case 'biceps':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_8tVWGfGyWIi8YlJr0VGOk46WmlHUN24Jg&s';
+        fundo  = 'https://images.unsplash.com/photo-1534367610401-0ee05f3db1d6?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Explode na Concêntrica e Controle a Essêntrica';
+        break;
+      case 'triceps':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReF1Twz2Bmk-PsGi-mLYKBVc_X_e6eNYm1fg&s';
+        fundo  = 'https://images.unsplash.com/photo-1526404428533-1385b4de0130?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Vá com tudo, Cuidado com o Cotovelo!';
+        break;
+      case 'abdomen':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Xb9lLab1I7jXi5YsD621uI-SV60ag9CcpQ&s';
+        fundo  = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Trincado!';
+        break;
+      case 'cardio':
+        musica = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3';
+        imagem = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNDE2kWV0dm5UgWZ9BN76p-wm7WLU6sXE_Q&s';
+        fundo  = 'https://images.unsplash.com/photo-1534367610401-0ee05f3db1d6?auto=format&fit=crop&w=1500&q=80';
+        nome   = 'Não Pare!';
+        break;
+      default:
+        return;
+    }
+
+    menu.style.display = 'none';
+    imagemDiv.style.display = 'flex';
+    foto.src = imagem;
+    foto.classList.add('girando');
+    musicaAtual.textContent = `🎵 Tocando: ${nome}`;
+    bg.style.backgroundImage = `url('${fundo}')`;
+    bg.style.opacity = '.55';
+
+    audio.src = musica;
+    audio.play();
+  }
+
+  function voltar() {
+    const audio = document.getElementById('audio');
+    const foto = document.getElementById('foto');
+    const musicaAtual = document.getElementById('musicaAtual');
+    const bg = document.getElementById('bgOverlay');
+    const menu = document.getElementById('menuInicial');
+    const imagemDiv = document.getElementById('imagem');
+
+    audio.pause();
+    audio.currentTime = 0;
+    foto.src = '';
+    foto.classList.remove('girando');
+    musicaAtual.textContent = '';
+    bg.style.opacity = '0';
+    imagemDiv.style.display = 'none';
+    menu.style.display = 'block';
+  }
+</script>
+</body>
+</html>
