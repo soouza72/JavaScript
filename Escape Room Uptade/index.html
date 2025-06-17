@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escape Room 🧩</title>
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section id="startScreen" class="container">
+    <h1>🔐 Escape Room</h1>
+    <p>Resolva todos os enigmas para escapar da sala misteriosa!</p>
+    <button id="startBtn" class="btn">Iniciar</button>
+  </section>
+
+  <section id="gameScreen" class="container hidden">
+    <h2>Enigma Room</h2>
+    <p id="contador">Enigmas resolvidos: 0 / 5 ✅</p>
+
+    <div id="botoes" class="buttons">
+      <button data-obj="quadro"  class="btn">🖼️ Quadro</button>
+      <button data-obj="caixa"   class="btn">📦 Caixa</button>
+      <button data-obj="livro"   class="btn">📖 Livro</button>
+      <button data-obj="janela"  class="btn">🪟 Janela</button>
+      <button data-obj="armario" class="btn">🚪 Armário</button>
+    </div>
+
+    <div id="perguntaBox" class="question-box hidden">
+      <p id="perguntaTexto"></p>
+      <input id="resposta" type="text" placeholder="Digite sua resposta aqui..." />
+      <button id="enviarBtn" class="btn">Enviar</button>
+    </div>
+
+    <p id="mensagem" class="mensagem"></p>
+  </section>
+
+  <section id="endScreen" class="container hidden">
+    <h2 id="endTitle"></h2>
+    <p id="endMsg"></p>
+    <button id="restartBtn" class="btn">Jogar novamente</button>
+  </section>
+
+  <audio id="successSound" src="https://cdn.freesound.org/previews/276/276033_4019027-lq.mp3"></audio>
+  <audio id="errorSound"   src="https://cdn.freesound.org/previews/109/109662_945474-lq.mp3"></audio>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
